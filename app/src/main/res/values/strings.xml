@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">URA Job Application Platform</string>
+    <string name="welcome">Welcome to URA job application platform.</string>
+    <string name="start">Start Your Application</string>
+</resources>
