@@ -2,4 +2,16 @@
     <string name="app_name">URA Job Application Platform</string>
     <string name="welcome">Welcome to URA job application platform.</string>
     <string name="start">Start Your Application</string>
+    <string name="personal_details">Personal Details</string>
+    <string name="title">Title</string>
+    <string name="f_name">First Name</string>
+    <string name="l_name">Last Name</string>
+    <string name="gender">Gender</string>
+    <string name="dob">Date Of Birth</string>
+    <string name="address">Address</string>
+    <string name="telephone">Telephone</string>
+    <string name="email">E-mail</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+
 </resources>
