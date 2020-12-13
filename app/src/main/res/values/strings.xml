@@ -13,5 +13,14 @@
     <string name="email">E-mail</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
+    <string name="job_details">Job Details</string>
+    <string name="job_applying">Job Being Applied for:</string>
+    <string name="job_qualifications">Qualifications</string>
+    <string name="add_qualifications">Additional Qualifications</string>
+    <string name="ccna">Cisco Certified Network Associate</string>
+    <string name="csdp">Certified Software Development Professional</string>
+    <string name="nlce">Novell Linux Certified Engineer</string>
+    <string name="comptia">CompTIA Linux+ certification</string>
+    <string name="description">Please write a short description of yourself, achievements and career path</string>
 
 </resources>
