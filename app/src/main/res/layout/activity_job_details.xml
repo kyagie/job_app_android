@@ -18,7 +18,10 @@
             android:layout_height="wrap_content"
             android:text="@string/job_details"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:layout_marginBottom="10sp"
+
+            />
 
         <TextView
             android:id="@+id/textView2"
@@ -30,7 +33,10 @@
         <Spinner
             android:id="@+id/spinner2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10sp"
+
+            />
 
 <!--        <TextView-->
 <!--            android:id="@+id/textView5"-->
@@ -70,7 +76,10 @@
 
         <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10sp"
+
+            >
 
             <RadioButton
                 android:id="@+id/radioButton2"
@@ -103,19 +112,19 @@
             android:layout_height="wrap_content"
             android:text="@string/description"
             android:textSize="16sp" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/filledDescTextField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/description"
             android:layout_marginBottom="10sp"
-            >
+            android:helperText=""
+            android:hint="@string/short_desc">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                />
+                android:inputType="textMultiLine" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -124,7 +133,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="jobDetails"
-            android:text="Button" />
+            android:text="@string/submit" />
 
     </LinearLayout>
 </ScrollView>

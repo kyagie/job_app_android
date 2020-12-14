@@ -23,5 +23,7 @@
     <string name="comptia">CompTIA Linux+ certification</string>
     <string name="description">Please write a short description of yourself, achievements and career path</string>
     <string name="confirm">Confirm and Continue</string>
+    <string name="submit">Submit Application</string>
+    <string name="short_desc">Description of yourself</string>
 
 </resources>
