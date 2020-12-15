@@ -51,7 +51,10 @@
             android:hint="@string/f_name"
             android:layout_marginBottom="10sp"
             app:startIconDrawable="@drawable/round_person_black_18dp"
+            app:boxStrokeColor="@color/blue_444"
             app:boxBackgroundColor="@color/white"
+            android:textColorHint="@color/black"
+            app:hintTextColor="@color/blue_444"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -68,7 +71,9 @@
             app:startIconDrawable="@drawable/round_person_black_18dp"
             android:layout_marginBottom="10sp"
             app:boxBackgroundColor="@color/white"
-
+            app:boxStrokeColor="@color/blue_444"
+            android:textColorHint="@color/black"
+            app:hintTextColor="@color/blue_444"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -96,12 +101,16 @@
                 android:id="@+id/radioButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:buttonTint="@color/blue_444"
+                android:textSize="18sp"
                 android:text="@string/female" />
 
             <RadioButton
                 android:id="@+id/radioButton3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:buttonTint="@color/blue_444"
+                android:textSize="18sp"
                 android:text="@string/male" />
         </RadioGroup>
 
@@ -164,6 +173,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="jobDetails"
+            android:textColor="@color/blue_444"
             android:text="@string/confirm" />
 
         <!--        <Button-->

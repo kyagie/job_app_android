@@ -17,9 +17,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/job_details"
+            android:textStyle="bold"
             android:textAlignment="center"
-            android:textSize="24sp"
-            android:layout_marginBottom="10sp"
+            android:textSize="20sp"
+            android:textColor="@color/blue_444"
+            android:layout_marginBottom="15sp"
 
             />
 
@@ -59,6 +61,10 @@
             android:hint="@string/job_qualifications"
             app:startIconDrawable="@drawable/round_work_outline_black_18dp"
             android:layout_marginBottom="10sp"
+            app:boxStrokeColor="@color/blue_444"
+            app:boxBackgroundColor="@color/white"
+            android:textColorHint="@color/black"
+            app:hintTextColor="@color/blue_444"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -121,7 +127,10 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10sp"
             app:startIconDrawable="@drawable/round_format_align_left_black_18dp"
-
+            app:boxStrokeColor="@color/blue_444"
+            app:boxBackgroundColor="@color/white"
+            android:textColorHint="@color/black"
+            app:hintTextColor="@color/blue_444"
             android:hint="@string/short_desc">
 
             <com.google.android.material.textfield.TextInputEditText
