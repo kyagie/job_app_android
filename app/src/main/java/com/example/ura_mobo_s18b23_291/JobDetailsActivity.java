@@ -2,7 +2,9 @@ package com.example.ura_mobo_s18b23_291;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -21,5 +23,10 @@ public class JobDetailsActivity extends AppCompatActivity {
 // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
+    }
+
+    public void feedBack(View view) {
+        Intent intent = new Intent(this, feedbackActivity.class);
+        startActivity(intent);
     }
 }
