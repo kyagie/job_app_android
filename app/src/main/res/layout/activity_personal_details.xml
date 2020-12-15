@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true">
 
     <LinearLayout
@@ -19,7 +20,22 @@
             android:text="@string/personal_details"
             android:textAlignment="center"
             android:textSize="20sp"
+            android:textColor="@color/black"
             android:layout_marginBottom="15sp"/>
+        <io.victoralbertos.breadcumbs_view.BreadcrumbsView
+            android:id="@+id/breadcrumbs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:numberOfSteps="3"
+            app:visitedStepBorderDotColor="@color/black"
+            app:visitedStepFillDotColor="@color/black"
+            app:nextStepBorderDotColor="@color/black"
+            app:nextStepFillDotColor="@color/black"
+            app:visitedStepSeparatorColor="@color/black"
+            app:nextStepSeparatorColor="@color/black"
+            app:radiusDot="7dp"
+            android:layout_marginBottom="12sp"
+            />
 
         <TextView
             android:id="@+id/textView4"
@@ -27,6 +43,7 @@
             android:layout_height="wrap_content"
             android:text="@string/title"
             android:textSize="18sp"
+            android:textColor="@color/black"
             android:layout_marginBottom="15sp"
             />
 
@@ -70,6 +87,7 @@
             android:layout_height="wrap_content"
             android:text="@string/gender"
             android:textSize="18sp"
+            android:textColor="@color/black"
             android:layout_marginBottom="1sp"
             />
 
@@ -96,8 +114,16 @@
             android:layout_height="wrap_content"
             android:text="@string/dob"
             android:textSize="18sp"
-            android:layout_marginBottom="15sp"
+            android:textColor="@color/black"
             />
+
+        <DatePicker
+            android:id="@+id/datePicker1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:datePickerMode="spinner"
+            android:layout_marginLeft="15sp"
+            android:calendarViewShown="false"/>
 
 
         <com.google.android.material.textfield.TextInputLayout
