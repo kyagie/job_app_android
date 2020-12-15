@@ -6,9 +6,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+//import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class PersonalDetailsActivity extends AppCompatActivity {
+
+    private TextInputLayout outlinedFNTextField, outlinedLNTextField, filledAddTextField, filledTeleTextField;
+    private Button textButton;
+    private AwesomeValidation awesomeValidation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +34,40 @@ public class PersonalDetailsActivity extends AppCompatActivity {
 // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
+//
+        outlinedFNTextField = (TextInputLayout) findViewById(R.id.outlinedFNTextField);
+        outlinedLNTextField = (TextInputLayout) findViewById(R.id.outlinedLNTextField);
+        filledAddTextField = (TextInputLayout) findViewById(R.id.filledAddTextField);
+        filledTeleTextField = (TextInputLayout) findViewById(R.id.filledTeleTextField);
+//
+        textButton = (Button) findViewById(R.id.textButton);
+//
+        awesomeValidation.addValidation(this, R.id.outlinedFNTextField,  "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.namerror);
+        awesomeValidation.addValidation(this, R.id.outlinedLNTextField,  "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.namerror);
+        awesomeValidation.addValidation(this, R.id.filledTeleTextField, "^[0-9]{2}[0-9]{8}$", R.string.telerror);
+        awesomeValidation.addValidation(this, R.id.filledAddTextField,  "^[a-zA-Z0-9_.-]*$", R.string.addresserror);
+
+        textButton.setOnClickListener(this::jobDetails);
+
     }
+    private void submitForm() {
+        //first validate the form then move ahead
+        //if this becomes true that means validation is successfull
+        if (awesomeValidation.validate()) {
+//            Toast.makeText(this, "Validation Successfull", Toast.LENGTH_LONG).show();
+            //process the data further
+            Intent intent = new Intent(this, JobDetailsActivity.class);
+            startActivity(intent);
+        }
+    }
+
     public void jobDetails(View view) {
-        Intent intent = new Intent(this, JobDetailsActivity.class);
-        startActivity(intent);
+        if (view == textButton) {
+            submitForm();
+        }
     }
+
+
 
 }

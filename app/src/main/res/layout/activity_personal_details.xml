@@ -82,6 +82,40 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/filledTeleTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:startIconDrawable="@drawable/round_local_phone_black_18dp"
+            android:hint="@string/telephone"
+            app:boxBackgroundColor="@color/white"
+            android:layout_marginBottom="10sp"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/filledAddTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:startIconDrawable="@drawable/round_home_black_18dp"
+            android:layout_marginBottom="10sp"
+            android:hint="@string/address"
+            app:boxBackgroundColor="@color/white"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
         <TextView
             android:id="@+id/textView8"
             android:layout_width="match_parent"
@@ -133,39 +167,8 @@
             android:calendarViewShown="false"/>
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/filledAddTextField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:startIconDrawable="@drawable/round_home_black_18dp"
-            android:layout_marginBottom="10sp"
-            android:hint="@string/address"
-            app:boxBackgroundColor="@color/white"
-            >
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/filledTeleTextField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:startIconDrawable="@drawable/round_local_phone_black_18dp"
-            android:hint="@string/telephone"
-            app:boxBackgroundColor="@color/white"
-            android:layout_marginBottom="10sp"
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="phone"
-                />
-
-        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/textButton"

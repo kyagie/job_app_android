@@ -2,18 +2,18 @@
     <string name="app_name">URA Job Application Platform</string>
     <string name="welcome">Welcome to URA job application platform.</string>
     <string name="start">Start Your Application</string>
-    <string name="personal_details">Personal Details</string>
-    <string name="title">Title</string>
+    <string name="personal_details">I. Personal Details</string>
+    <string name="title">Title:</string>
     <string name="f_name">First Name</string>
     <string name="l_name">Last Name</string>
-    <string name="gender">Gender</string>
+    <string name="gender">Gender:</string>
     <string name="dob">Date Of Birth</string>
     <string name="address">Address</string>
     <string name="telephone">Telephone</string>
     <string name="email">E-mail</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
-    <string name="job_details">Job Details</string>
+    <string name="job_details">ii. Job Details</string>
     <string name="job_applying">Job Being Applied for:</string>
     <string name="job_qualifications">Qualifications</string>
     <string name="add_qualifications">Additional Qualifications</string>
@@ -39,4 +39,8 @@
         <item>Network Administrator</item>
         <item>Systems Analyst</item>
     </string-array>
+    <string name="namerror">Invalid Name. Should be letters only.</string>
+    <string name="addresserror">Invalid Address</string>
+    <string name="telerror">Invalid Telephone.</string>
+
 </resources>
