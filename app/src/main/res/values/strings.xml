@@ -7,7 +7,7 @@
     <string name="f_name">First Name</string>
     <string name="l_name">Last Name</string>
     <string name="gender">Gender:</string>
-    <string name="dob">Date Of Birth</string>
+    <string name="dob">Date Of Birth:</string>
     <string name="address">Address</string>
     <string name="telephone">Telephone</string>
     <string name="email">E-mail</string>
@@ -42,5 +42,7 @@
     <string name="namerror">Invalid Name. Should be letters only.</string>
     <string name="addresserror">Invalid Address</string>
     <string name="telerror">Invalid Telephone.</string>
+    <string name="helpertextphone">E.g. 0776997197</string>
+    <string name="helpertextquali">Please type all degree qualifications separated by a semicolon</string>
 
 </resources>

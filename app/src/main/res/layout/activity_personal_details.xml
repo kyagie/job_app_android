@@ -88,6 +88,7 @@
             android:layout_height="wrap_content"
             app:startIconDrawable="@drawable/round_local_phone_black_18dp"
             android:hint="@string/telephone"
+            app:helperText="@string/helpertextphone"
             app:boxBackgroundColor="@color/white"
             android:layout_marginBottom="10sp"
             >

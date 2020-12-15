@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10sp"
         android:layout_marginRight="10sp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <TextView
             android:id="@+id/textView13"
@@ -30,14 +31,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/job_applying"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+
+            />
 
         <Spinner
             android:id="@+id/spinner2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10sp"
-
+            android:background="@color/grey"
             />
 
 <!--        <TextView-->
@@ -65,6 +68,9 @@
             app:boxBackgroundColor="@color/white"
             android:textColorHint="@color/black"
             app:hintTextColor="@color/blue_444"
+            app:counterEnabled="true"
+            app:helperText="@string/helpertextquali"
+            app:counterMaxLength="200"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -81,39 +87,32 @@
             android:text="@string/add_qualifications"
             android:textSize="18sp" />
 
-        <RadioGroup
-            android:layout_width="match_parent"
+        <CheckBox
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10sp"
+            android:layout_width="wrap_content"
+            android:checked="false"
+            android:text="@string/ccna"
 
-            >
+            />
 
-            <RadioButton
-                android:id="@+id/radioButton2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/ccna" />
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:checked="false"
+            android:text="@string/csdp"/>
 
-            <RadioButton
-                android:id="@+id/radioButton4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/csdp" />
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:checked="false"
+            android:text="@string/nlce"/>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:checked="false"
+            android:text="@string/comptia"/>
 
-            <RadioButton
-                android:id="@+id/radioButton5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/nlce" />
-
-            <RadioButton
-                android:id="@+id/radioButton6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/comptia" />
-
-        </RadioGroup>
-        <TextView
+                <TextView
             android:id="@+id/textView15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -131,6 +130,8 @@
             app:boxBackgroundColor="@color/white"
             android:textColorHint="@color/black"
             app:hintTextColor="@color/blue_444"
+            app:counterEnabled="true"
+            app:counterMaxLength="200"
             android:hint="@string/short_desc">
 
             <com.google.android.material.textfield.TextInputEditText
