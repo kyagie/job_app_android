@@ -32,6 +32,8 @@
             android:layout_height="wrap_content"
             android:text="@string/job_applying"
             android:textSize="18sp"
+            android:textColor="@color/blue_444"
+            android:textStyle="bold"
 
             />
 
@@ -39,7 +41,7 @@
             android:id="@+id/spinner2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10sp"
+            android:layout_marginBottom="15sp"
             android:background="@color/grey"
             />
 
@@ -85,6 +87,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/add_qualifications"
+            android:textColor="@color/blue_444"
+            android:textStyle="bold"
             android:textSize="18sp" />
 
         <CheckBox
@@ -92,24 +96,27 @@
             android:layout_width="wrap_content"
             android:checked="false"
             android:text="@string/ccna"
-
+            app:buttonTint="@color/blue_444"
             />
 
         <CheckBox
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:checked="false"
+            app:buttonTint="@color/blue_444"
             android:text="@string/csdp"/>
 
         <CheckBox
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:checked="false"
+            app:buttonTint="@color/blue_444"
             android:text="@string/nlce"/>
         <CheckBox
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:checked="false"
+            app:buttonTint="@color/blue_444"
             android:text="@string/comptia"/>
 
                 <TextView
@@ -117,7 +124,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/description"
-
+                    android:textColor="@color/blue_444"
+                    android:textStyle="bold"
             android:textSize="16sp" />
 
         <com.google.android.material.textfield.TextInputLayout
