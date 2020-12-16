@@ -46,7 +46,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
         awesomeValidation.addValidation(this, R.id.outlinedFNTextField,  "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.namerror);
         awesomeValidation.addValidation(this, R.id.outlinedLNTextField,  "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.namerror);
         awesomeValidation.addValidation(this, R.id.filledTeleTextField, "^[0-9]{2}[0-9]{8}$", R.string.telerror);
-//        awesomeValidation.addValidation(this, R.id.filledAddTextField,  "^[a-zA-Z0-9_.-]*$", R.string.addresserror);
+        awesomeValidation.addValidation(this, R.id.filledAddTextField,  "^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$", R.string.addresserror);
 
         textButton.setOnClickListener(this::jobDetails);
 
