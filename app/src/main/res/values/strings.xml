@@ -44,5 +44,7 @@
     <string name="telerror">Invalid Telephone.</string>
     <string name="helpertextphone">E.g. 0776997197</string>
     <string name="helpertextquali">Please type all degree qualifications separated by a semicolon</string>
+    <string name="submitted">Your Application has been submitted.</string>
+    <string name="goodluck">Good luck</string>
 
 </resources>

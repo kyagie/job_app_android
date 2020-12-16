@@ -12,13 +12,34 @@
         android:layout_marginLeft="10sp"
         android:layout_marginRight="10sp"
         android:orientation="vertical">
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/submitted"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/catamaran_semibold"
+            android:textColor="@color/blue_444"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
 
+            />
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/goodluck"
+            android:fontFamily="@font/catamaran_semibold"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/blue_444"
+            />
         <pl.droidsonroids.gif.GifImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/tick"
             />
-
-
     </LinearLayout>
 </ScrollView>
