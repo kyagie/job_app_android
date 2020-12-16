@@ -41,7 +41,7 @@
     </string-array>
     <string name="namerror">Invalid Name. Should be letters only.</string>
     <string name="addresserror">Invalid Address</string>
-    <string name="telerror">Invalid Telephone.</string>
+    <string name="telerror">Invalid phone number.</string>
     <string name="helpertextphone">E.g. 077*******</string>
     <string name="helpertextquali">Please type all degree qualifications separated by a semicolon</string>
     <string name="submitted">Your Application has been submitted.</string>
