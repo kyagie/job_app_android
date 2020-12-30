@@ -51,27 +51,28 @@ public class JobDetailsActivity extends AppCompatActivity {
         button3.setOnClickListener(this::feedBack);
     }
     private void submitForm() {
-        String filename = "jobDetailsFile";
-        spinner = (Spinner) findViewById(R.id.spinner2);
-        String jobapplied = spinner.getSelectedItem().toString();
-        filledQuaTextField = (TextInputLayout) findViewById(R.id.filledQuaTextField);
-        String qualifations = filledQuaTextField.getEditText().getText().toString();
-        filledDescTextField = (TextInputLayout) findViewById(R.id.filledDescTextField);
-        String desc =filledDescTextField.getEditText().getText().toString();
-        FileOutputStream fos;
-        try {
-            fos = openFileOutput(filename, Context.MODE_PRIVATE);
-            //default mode is PRIVATE,
-            fos.write(jobapplied.getBytes());
-            fos.write(qualifations.getBytes());
-            fos.write(desc.getBytes());
-            fos.close();
-            Toast.makeText(getApplicationContext(),"You applied for:  "+jobapplied, Toast.LENGTH_LONG).show();
-        }catch (FileNotFoundException e){
-            e.printStackTrace();
-        }catch (IOException e){e.printStackTrace();}
+
 
         if (awesomeValidation.validate()) {
+            String filename = "jobDetailsFile";
+            spinner = (Spinner) findViewById(R.id.spinner2);
+            String jobapplied = spinner.getSelectedItem().toString();
+            filledQuaTextField = (TextInputLayout) findViewById(R.id.filledQuaTextField);
+            String qualifations = filledQuaTextField.getEditText().getText().toString();
+            filledDescTextField = (TextInputLayout) findViewById(R.id.filledDescTextField);
+            String desc =filledDescTextField.getEditText().getText().toString();
+            FileOutputStream fos;
+            try {
+                fos = openFileOutput(filename, Context.MODE_PRIVATE);
+                //default mode is PRIVATE,
+                fos.write(jobapplied.getBytes());
+                fos.write(qualifations.getBytes());
+                fos.write(desc.getBytes());
+                fos.close();
+//            Toast.makeText(getApplicationContext(),"You applied for:  "+jobapplied, Toast.LENGTH_LONG).show();
+            }catch (FileNotFoundException e){
+                e.printStackTrace();
+            }catch (IOException e){e.printStackTrace();}
             Intent intent = new Intent(this, feedbackActivity.class);
             startActivity(intent);
         }
