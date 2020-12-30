@@ -2,12 +2,15 @@ package com.example.ura_mobo_s18b23_291;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 //import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -15,10 +18,18 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class PersonalDetailsActivity extends AppCompatActivity {
 
     private TextInputLayout outlinedFNTextField, outlinedLNTextField, filledAddTextField, filledTeleTextField;
     private Button textButton;
+    private Spinner spinner;
+    private RadioGroup radioGender;
+    private RadioButton radioButton;
     private AwesomeValidation awesomeValidation;
 
     @Override
@@ -52,11 +63,40 @@ public class PersonalDetailsActivity extends AppCompatActivity {
 
     }
     private void submitForm() {
+        String filename = "personalDetailsFile";
+        ArrayList<String> personalDetails = new ArrayList<>();
+        outlinedFNTextField = (TextInputLayout) findViewById(R.id.outlinedFNTextField);
+        String FirstName = outlinedFNTextField.getEditText().getText().toString();
+        outlinedLNTextField = (TextInputLayout) findViewById(R.id.outlinedLNTextField);
+        String LastName = outlinedLNTextField.getEditText().getText().toString();
+        spinner = (Spinner) findViewById(R.id.spinner);
+        String Title = spinner.getSelectedItem().toString();
+        filledTeleTextField = (TextInputLayout) findViewById(R.id.filledTeleTextField);
+        String Telephone = filledTeleTextField.getEditText().getText().toString();
+        radioGender = (RadioGroup) findViewById(R.id.radioGender);
+        int selectedId = radioGender.getCheckedRadioButtonId();
+        radioButton = (RadioButton) findViewById(selectedId);
+        String Gender = radioButton.getText().toString();
         //first validate the form then move ahead
         //if this becomes true that means validation is successfull
+        FileOutputStream fos;
+        try {
+            fos = openFileOutput(filename, Context.MODE_PRIVATE);
+            //default mode is PRIVATE,
+            fos.write(Title.getBytes());
+            fos.write(FirstName.getBytes());
+            fos.write(LastName.getBytes());
+            fos.write(Telephone.getBytes());
+            fos.write(Gender.getBytes());
+            fos.close();
+            Toast.makeText(getApplicationContext(),"Personal Details for:  "+Title +" "+FirstName+ " " + LastName + " saved", Toast.LENGTH_LONG).show();
+        }catch (FileNotFoundException e){
+            e.printStackTrace();
+        }catch (IOException e){e.printStackTrace();}
         if (awesomeValidation.validate()) {
 //            Toast.makeText(this, "Validation Successfull", Toast.LENGTH_LONG).show();
             //process the data further
+
             Intent intent = new Intent(this, JobDetailsActivity.class);
             startActivity(intent);
         }
