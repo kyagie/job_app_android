@@ -64,7 +64,6 @@ public class PersonalDetailsActivity extends AppCompatActivity {
     }
     private void submitForm() {
         String filename = "personalDetailsFile";
-        ArrayList<String> personalDetails = new ArrayList<>();
         outlinedFNTextField = (TextInputLayout) findViewById(R.id.outlinedFNTextField);
         String FirstName = outlinedFNTextField.getEditText().getText().toString();
         outlinedLNTextField = (TextInputLayout) findViewById(R.id.outlinedLNTextField);

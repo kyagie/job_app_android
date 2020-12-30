@@ -2,20 +2,28 @@ package com.example.ura_mobo_s18b23_291;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
+
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class JobDetailsActivity extends AppCompatActivity {
     private TextInputLayout filledDescTextField, filledQuaTextField;
     private Button button3;
     private AwesomeValidation awesomeValidation;
-
+    private Spinner spinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +51,26 @@ public class JobDetailsActivity extends AppCompatActivity {
         button3.setOnClickListener(this::feedBack);
     }
     private void submitForm() {
+        String filename = "jobDetailsFile";
+        spinner = (Spinner) findViewById(R.id.spinner2);
+        String jobapplied = spinner.getSelectedItem().toString();
+        filledQuaTextField = (TextInputLayout) findViewById(R.id.filledQuaTextField);
+        String qualifations = filledQuaTextField.getEditText().getText().toString();
+        filledDescTextField = (TextInputLayout) findViewById(R.id.filledDescTextField);
+        String desc =filledDescTextField.getEditText().getText().toString();
+        FileOutputStream fos;
+        try {
+            fos = openFileOutput(filename, Context.MODE_PRIVATE);
+            //default mode is PRIVATE,
+            fos.write(jobapplied.getBytes());
+            fos.write(qualifations.getBytes());
+            fos.write(desc.getBytes());
+            fos.close();
+            Toast.makeText(getApplicationContext(),"You applied for:  "+jobapplied, Toast.LENGTH_LONG).show();
+        }catch (FileNotFoundException e){
+            e.printStackTrace();
+        }catch (IOException e){e.printStackTrace();}
+
         if (awesomeValidation.validate()) {
             Intent intent = new Intent(this, feedbackActivity.class);
             startActivity(intent);
