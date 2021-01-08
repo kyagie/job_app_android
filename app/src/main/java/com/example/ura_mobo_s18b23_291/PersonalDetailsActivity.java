@@ -81,7 +81,9 @@ public class PersonalDetailsActivity extends AppCompatActivity {
             public static final String COLUMN_NAME_TEL = "telephone";
             public static final String COLUMN_NAME_GEN = "gender";
             public static final String COLUMN_NAME_DOB = "dob";
-
+            public static final String COLUMN_NAME_JOB_APPLIED = "job_applied";
+            public static final String COLUMN_NAME_QUALIFICATIONS = "qualifications";
+            public static final String COLUMN_NAME_DESC = "description";
         }
         private static final String SQL_CREATE_ENTRIES =
                 "CREATE TABLE " + Details.TABLE_NAME + " (" +
@@ -92,7 +94,10 @@ public class PersonalDetailsActivity extends AppCompatActivity {
                         Details.COLUMN_NAME_ADD + " TEXT,"+
                         Details.COLUMN_NAME_TEL + " TEXT,"+
                         Details.COLUMN_NAME_GEN + " TEXT,"+
-                        Details.COLUMN_NAME_DOB + " TEXT)" ;
+                        Details.COLUMN_NAME_DOB + " TEXT,"+
+                        Details.COLUMN_NAME_JOB_APPLIED + " TEXT," +
+                        Details.COLUMN_NAME_QUALIFICATIONS + " TEXT," +
+                        Details.COLUMN_NAME_DESC + " TEXT)"  ;
 
         private static final String SQL_DELETE_ENTRIES =
                 "DROP TABLE IF EXISTS " + Details.TABLE_NAME;
@@ -100,7 +105,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
 
         public static class PersonalDetailsDbHelper extends SQLiteOpenHelper {
             // If you change the database schema, you must increment the database version.
-            public static final int DATABASE_VERSION = 1;
+            public static final int DATABASE_VERSION = 2;
             public static final String DATABASE_NAME = "personalDetails.db";
 
             public PersonalDetailsDbHelper(Context context) {
@@ -119,8 +124,6 @@ public class PersonalDetailsActivity extends AppCompatActivity {
                 onUpgrade(db, oldVersion, newVersion);
             }
         }
-//        PersonalDetailsDbHelper dbHelper = new PersonalDetailsDbHelper();
-//        SQLiteDatabase db = dbHelper.getWritableDatabase();
 
     }
 
@@ -146,29 +149,23 @@ public class PersonalDetailsActivity extends AppCompatActivity {
         //if this becomes true that means validation is successfull
 
 
-        SQLiteDatabase db = h.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(d.COLUMN_NAME_TITLE, Title);
-        values.put(d.COLUMN_NAME_FN, FirstName);
-        values.put(d.COLUMN_NAME_LN, LastName);
-        values.put(d.COLUMN_NAME_TEL, Telephone);
-        values.put(d.COLUMN_NAME_GEN, Gender);
-
-        long newRowId = db.insert(d.TABLE_NAME, null, values);
-
-        Toast.makeText(getApplicationContext(),"Personal Details for:  "+ newRowId + " saved", Toast.LENGTH_LONG).show();
-
-
-
-//        SQLiteDatabase db = p.db;
-//        ContentValues values = new ContentValues();
-//        SQLiteDatabase
-
         if (awesomeValidation.validate()) {
-//            Toast.makeText(this, "Validation Successfull", Toast.LENGTH_LONG).show();
-            //process the data further
+            SQLiteDatabase db = h.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(d.COLUMN_NAME_TITLE, Title);
+            values.put(d.COLUMN_NAME_FN, FirstName);
+            values.put(d.COLUMN_NAME_LN, LastName);
+            values.put(d.COLUMN_NAME_TEL, Telephone);
+            values.put(d.COLUMN_NAME_GEN, Gender);
+
+            long newRowId = db.insert(d.TABLE_NAME, null, values);
+
+            Toast.makeText(getApplicationContext(),"Personal Details for:  "+ newRowId + " saved", Toast.LENGTH_LONG).show();
+//        String id = newRo;
+
 
             Intent intent = new Intent(this, JobDetailsActivity.class);
+            intent.putExtra("newRowId", newRowId);
             startActivity(intent);
         }
     }
@@ -178,8 +175,5 @@ public class PersonalDetailsActivity extends AppCompatActivity {
             submitForm();
         }
     }
-
-
-
 
 }
