@@ -156,9 +156,9 @@ public class PersonalDetailsActivity extends AppCompatActivity {
 
         long newRowId = db.insert(d.TABLE_NAME, null, values);
 
-        if(newRowId > 1){
+        Toast.makeText(getApplicationContext(),"Personal Details for:  "+ newRowId + " saved", Toast.LENGTH_LONG).show();
 
-        }
+
 
 //        SQLiteDatabase db = p.db;
 //        ContentValues values = new ContentValues();
