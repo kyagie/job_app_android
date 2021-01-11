@@ -30,7 +30,9 @@ public class JobDetailsActivity extends AppCompatActivity {
     private Spinner spinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        long newRowId = getIntent().getExtras().getLong("newRowId");
+        Intent intent = getIntent();
+        String [] personalDetails = intent.getStringArrayExtra("personalDetailsArray");
+//        int l = personalDetails.length;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_details);
         Spinner spinner = (Spinner) findViewById(R.id.spinner2);
@@ -48,8 +50,7 @@ public class JobDetailsActivity extends AppCompatActivity {
         filledQuaTextField = (TextInputLayout) findViewById(R.id.filledQuaTextField);
 
         button3 = (Button) findViewById(R.id.button3);
-
-        Toast.makeText(getApplicationContext(),"RowID:  "+ newRowId + " received", Toast.LENGTH_LONG).show();
+//        Toast.makeText(getApplicationContext(),"RowID:  "+ l + " received", Toast.LENGTH_LONG).show();
 
         awesomeValidation.addValidation(this, R.id.filledDescTextField,  "[A-Za-z0-9 _.,;!\"'/$]*", R.string.descerror);
         awesomeValidation.addValidation(this, R.id.filledQuaTextField,  "[A-Za-z0-9 _.,;!\"'/$]*", R.string.descerror);
@@ -77,21 +78,21 @@ public class JobDetailsActivity extends AppCompatActivity {
             public static final String COLUMN_NAME_DESC = "description";
         }
         private static final String SQL_CREATE_ENTRIES =
-                "CREATE TABLE " + PersonalDetailsActivity.PersonalDetails.Details.TABLE_NAME + " (" +
-                        PersonalDetailsActivity.PersonalDetails.Details._ID + " INTEGER PRIMARY KEY," +
-                        PersonalDetailsActivity.PersonalDetails.Details.COLUMN_NAME_TITLE + " TEXT," +
-                        PersonalDetailsActivity.PersonalDetails.Details.COLUMN_NAME_FN + " TEXT," +
-                        PersonalDetailsActivity.PersonalDetails.Details.COLUMN_NAME_LN + " TEXT," +
-                        PersonalDetailsActivity.PersonalDetails.Details.COLUMN_NAME_ADD + " TEXT,"+
-                        PersonalDetailsActivity.PersonalDetails.Details.COLUMN_NAME_TEL + " TEXT,"+
-                        PersonalDetailsActivity.PersonalDetails.Details.COLUMN_NAME_GEN + " TEXT,"+
-                        PersonalDetailsActivity.PersonalDetails.Details.COLUMN_NAME_DOB + " TEXT,"+
-                        PersonalDetailsActivity.PersonalDetails.Details.COLUMN_NAME_JOB_APPLIED + " TEXT," +
-                        PersonalDetailsActivity.PersonalDetails.Details.COLUMN_NAME_QUALIFICATIONS + " TEXT," +
-                        PersonalDetailsActivity.PersonalDetails.Details.COLUMN_NAME_DESC + " TEXT)"  ;
+                "CREATE TABLE " + Details.TABLE_NAME + " (" +
+                        Details._ID + " INTEGER PRIMARY KEY," +
+                        Details.COLUMN_NAME_TITLE + " TEXT," +
+                        Details.COLUMN_NAME_FN + " TEXT," +
+                        Details.COLUMN_NAME_LN + " TEXT," +
+                        Details.COLUMN_NAME_ADD + " TEXT,"+
+                        Details.COLUMN_NAME_TEL + " TEXT,"+
+                        Details.COLUMN_NAME_GEN + " TEXT,"+
+                        Details.COLUMN_NAME_DOB + " TEXT,"+
+                        Details.COLUMN_NAME_JOB_APPLIED + " TEXT," +
+                        Details.COLUMN_NAME_QUALIFICATIONS + " TEXT," +
+                        Details.COLUMN_NAME_DESC + " TEXT)"  ;
 
         private static final String SQL_DELETE_ENTRIES =
-                "DROP TABLE IF EXISTS " + PersonalDetailsActivity.PersonalDetails.Details.TABLE_NAME;
+                "DROP TABLE IF EXISTS " + Details.TABLE_NAME;
 
 
         public static class PersonalDetailsDbHelper extends SQLiteOpenHelper {
@@ -138,7 +139,7 @@ public class JobDetailsActivity extends AppCompatActivity {
             values.put(d.COLUMN_NAME_QUALIFICATIONS, qualifations);
             values.put(d.COLUMN_NAME_DESC, desc);
 
-            String selection =
+//            String selection =
 
 
 

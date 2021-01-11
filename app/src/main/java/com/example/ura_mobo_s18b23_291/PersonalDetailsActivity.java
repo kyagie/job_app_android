@@ -66,71 +66,11 @@ public class PersonalDetailsActivity extends AppCompatActivity {
         textButton.setOnClickListener(this::jobDetails);
 
     }
-    public static final class PersonalDetails {
-        // To prevent someone from accidentally instantiating the contract class,
-        // make the constructor private.
-        private PersonalDetails() {}
-
-        /* Inner class that defines the table contents */
-        public static class Details implements BaseColumns {
-            public static final String TABLE_NAME = "personalDetails";
-            public static final String COLUMN_NAME_TITLE = "title";
-            public static final String COLUMN_NAME_FN = "first_name";
-            public static final String COLUMN_NAME_LN = "last_name";
-            public static final String COLUMN_NAME_ADD = "address";
-            public static final String COLUMN_NAME_TEL = "telephone";
-            public static final String COLUMN_NAME_GEN = "gender";
-            public static final String COLUMN_NAME_DOB = "dob";
-            public static final String COLUMN_NAME_JOB_APPLIED = "job_applied";
-            public static final String COLUMN_NAME_QUALIFICATIONS = "qualifications";
-            public static final String COLUMN_NAME_DESC = "description";
-        }
-        private static final String SQL_CREATE_ENTRIES =
-                "CREATE TABLE " + Details.TABLE_NAME + " (" +
-                        Details._ID + " INTEGER PRIMARY KEY," +
-                        Details.COLUMN_NAME_TITLE + " TEXT," +
-                        Details.COLUMN_NAME_FN + " TEXT," +
-                        Details.COLUMN_NAME_LN + " TEXT," +
-                        Details.COLUMN_NAME_ADD + " TEXT,"+
-                        Details.COLUMN_NAME_TEL + " TEXT,"+
-                        Details.COLUMN_NAME_GEN + " TEXT,"+
-                        Details.COLUMN_NAME_DOB + " TEXT,"+
-                        Details.COLUMN_NAME_JOB_APPLIED + " TEXT," +
-                        Details.COLUMN_NAME_QUALIFICATIONS + " TEXT," +
-                        Details.COLUMN_NAME_DESC + " TEXT)"  ;
-
-        private static final String SQL_DELETE_ENTRIES =
-                "DROP TABLE IF EXISTS " + Details.TABLE_NAME;
-
-
-        public static class PersonalDetailsDbHelper extends SQLiteOpenHelper {
-            // If you change the database schema, you must increment the database version.
-            public static final int DATABASE_VERSION = 2;
-            public static final String DATABASE_NAME = "personalDetails.db";
-
-            public PersonalDetailsDbHelper(Context context) {
-                super(context, DATABASE_NAME, null, DATABASE_VERSION);
-            }
-            public void onCreate(SQLiteDatabase db) {
-                db.execSQL(SQL_CREATE_ENTRIES);
-            }
-            public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-                // This database is only a cache for online data, so its upgrade policy is
-                // to simply to discard the data and start over
-                db.execSQL(SQL_DELETE_ENTRIES);
-                onCreate(db);
-            }
-            public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-                onUpgrade(db, oldVersion, newVersion);
-            }
-        }
-
-    }
 
     private void submitForm() {
-        PersonalDetails p = new PersonalDetails();
-        PersonalDetails.Details d = new PersonalDetails.Details();
-        PersonalDetails.PersonalDetailsDbHelper h = new PersonalDetails.PersonalDetailsDbHelper(getBaseContext());
+//       PersonalDetails p = new PersonalDetails();
+//     PersonalDetails.Details d = new PersonalDetails.Details();
+//        PersonalDetails.PersonalDetailsDbHelper h = new PersonalDetails.PersonalDetailsDbHelper(getBaseContext());
 
 
         outlinedFNTextField = (TextInputLayout) findViewById(R.id.outlinedFNTextField);
@@ -150,22 +90,29 @@ public class PersonalDetailsActivity extends AppCompatActivity {
 
 
         if (awesomeValidation.validate()) {
-            SQLiteDatabase db = h.getWritableDatabase();
-            ContentValues values = new ContentValues();
-            values.put(d.COLUMN_NAME_TITLE, Title);
-            values.put(d.COLUMN_NAME_FN, FirstName);
-            values.put(d.COLUMN_NAME_LN, LastName);
-            values.put(d.COLUMN_NAME_TEL, Telephone);
-            values.put(d.COLUMN_NAME_GEN, Gender);
+            ArrayList<String> personalDetails = new ArrayList<String>();
+            personalDetails.add(Title);
+            personalDetails.add(FirstName);
+            personalDetails.add(LastName);
+            personalDetails.add(Telephone);
+            personalDetails.add(Gender);
 
-            long newRowId = db.insert(d.TABLE_NAME, null, values);
-
-            Toast.makeText(getApplicationContext(),"Personal Details for:  "+ newRowId + " saved", Toast.LENGTH_LONG).show();
+            // SQLiteDatabase db = h.getWritableDatabase();
+//            ContentValues values = new ContentValues();
+//            values.put(d.COLUMN_NAME_TITLE, Title);
+//            values.put(d.COLUMN_NAME_FN, FirstName);
+//            values.put(d.COLUMN_NAME_LN, LastName);
+//            values.put(d.COLUMN_NAME_TEL, Telephone);
+//            values.put(d.COLUMN_NAME_GEN, Gender);
+//
+//            long newRowId = db.insert(d.TABLE_NAME, null, values);
+//
+//            Toast.makeText(getApplicationContext(),"Personal Details for:  "+ newRowId + " saved", Toast.LENGTH_LONG).show();
 //        String id = newRo;
 
 
             Intent intent = new Intent(this, JobDetailsActivity.class);
-            intent.putExtra("newRowId", newRowId);
+            intent.putExtra("personalDetailsArray", personalDetails);
             startActivity(intent);
         }
     }
