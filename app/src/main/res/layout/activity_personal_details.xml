@@ -313,7 +313,7 @@
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="jobDetails"
+            android:onClick="feedBack"
             android:fontFamily="@font/catamaran_semibold"
             android:textColor="@color/blue_444"
             android:text="@string/confirm" />

@@ -78,7 +78,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
         awesomeValidation.addValidation(this, R.id.filledDescTextField,  "[A-Za-z0-9 _.,;!\"'/$]*", R.string.descerror);
         awesomeValidation.addValidation(this, R.id.filledQuaTextField,  "[A-Za-z0-9 _.,;!\"'/$]*", R.string.descerror);
 
-//        textButton.setOnClickListener(this::jobDetails);
+        textButton.setOnClickListener(this::feedback);
 
     }
     public static final class PersonalDetails {
@@ -193,7 +193,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
         }
     }
 
-    public void jobDetails(View view) {
+    public void feedback(View view) {
         if (view == textButton) {
             submitForm();
         }
