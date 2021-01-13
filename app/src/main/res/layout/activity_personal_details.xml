@@ -177,8 +177,135 @@
             android:layout_marginLeft="15sp"
             android:calendarViewShown="false"/>
 
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/job_details"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:fontFamily="@font/catamaran_semibold"
+            android:textColor="@color/blue_444"
+            android:layout_marginBottom="15sp"
 
+            />
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/job_applying"
+            android:textSize="18sp"
+            android:fontFamily="@font/catamaran_semibold"
+            android:textColor="@color/blue_444"
+            android:textStyle="bold"
+
+            />
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15sp"
+            android:background="@color/grey"
+            />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/filledQuaTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/job_qualifications"
+            app:startIconDrawable="@drawable/round_work_outline_black_18dp"
+            android:layout_marginBottom="10sp"
+            app:boxStrokeColor="@color/blue_444"
+            app:boxBackgroundColor="@color/white"
+            android:textColorHint="@color/black"
+            app:hintTextColor="@color/blue_444"
+            app:counterEnabled="true"
+            app:helperText="@string/helpertextquali"
+            app:counterMaxLength="200"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_qualifications"
+            android:fontFamily="@font/catamaran_semibold"
+            android:textColor="@color/blue_444"
+            android:textStyle="bold"
+            android:textSize="18sp" />
+
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:checked="false"
+            android:text="@string/ccna"
+            app:buttonTint="@color/blue_444"
+            />
+
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:checked="false"
+            app:buttonTint="@color/blue_444"
+            android:fontFamily="@font/catamaran_semibold"
+            android:text="@string/csdp"/>
+
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:checked="false"
+            android:fontFamily="@font/catamaran_semibold"
+            app:buttonTint="@color/blue_444"
+            android:text="@string/nlce"/>
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:checked="false"
+            android:fontFamily="@font/catamaran_semibold"
+            app:buttonTint="@color/blue_444"
+            android:text="@string/comptia"/>
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/catamaran_semibold"
+            android:text="@string/description"
+            android:textColor="@color/blue_444"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/filledDescTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10sp"
+            app:startIconDrawable="@drawable/round_format_align_left_black_18dp"
+            app:boxStrokeColor="@color/blue_444"
+            app:boxBackgroundColor="@color/white"
+            android:textColorHint="@color/black"
+            app:hintTextColor="@color/blue_444"
+            app:counterEnabled="true"
+            android:fontFamily="@font/catamaran_semibold"
+            app:counterMaxLength="200"
+            android:hint="@string/short_desc">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <Button

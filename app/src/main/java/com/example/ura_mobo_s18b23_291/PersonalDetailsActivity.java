@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
 public class PersonalDetailsActivity extends AppCompatActivity {
 
-    private TextInputLayout outlinedFNTextField, outlinedLNTextField, filledAddTextField, filledTeleTextField;
+    private TextInputLayout outlinedFNTextField, outlinedLNTextField, filledAddTextField, filledTeleTextField, filledDescTextField, filledQuaTextField;
     private Button textButton;
     private Spinner spinner;
     private RadioGroup radioGender;
@@ -41,6 +41,8 @@ public class PersonalDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_details);
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        Spinner spinner2 = (Spinner) findViewById(R.id.spinner2);
+
 // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.title_array, android.R.layout.simple_spinner_item);
@@ -49,12 +51,23 @@ public class PersonalDetailsActivity extends AppCompatActivity {
 // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
+                R.array.job_array, android.R.layout.simple_spinner_item);
+// Specify the layout to use when the list of choices appears
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+        spinner2.setAdapter(adapter2);
+
+
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 //
         outlinedFNTextField = (TextInputLayout) findViewById(R.id.outlinedFNTextField);
         outlinedLNTextField = (TextInputLayout) findViewById(R.id.outlinedLNTextField);
         filledAddTextField = (TextInputLayout) findViewById(R.id.filledAddTextField);
         filledTeleTextField = (TextInputLayout) findViewById(R.id.filledTeleTextField);
+        filledDescTextField = (TextInputLayout) findViewById(R.id.filledDescTextField);
+        filledQuaTextField = (TextInputLayout) findViewById(R.id.filledQuaTextField);
+
 //
         textButton = (Button) findViewById(R.id.textButton);
 //
@@ -62,57 +75,120 @@ public class PersonalDetailsActivity extends AppCompatActivity {
         awesomeValidation.addValidation(this, R.id.outlinedLNTextField,  "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.namerror);
         awesomeValidation.addValidation(this, R.id.filledTeleTextField, "^[0-9]{2}[0-9]{8}$", R.string.telerror);
         awesomeValidation.addValidation(this, R.id.filledAddTextField,  "[A-Za-z0-9 _.,;!\"'/$]*", R.string.addresserror);
+        awesomeValidation.addValidation(this, R.id.filledDescTextField,  "[A-Za-z0-9 _.,;!\"'/$]*", R.string.descerror);
+        awesomeValidation.addValidation(this, R.id.filledQuaTextField,  "[A-Za-z0-9 _.,;!\"'/$]*", R.string.descerror);
 
-        textButton.setOnClickListener(this::jobDetails);
+//        textButton.setOnClickListener(this::jobDetails);
+
+    }
+    public static final class PersonalDetails {
+        // To prevent someone from accidentally instantiating the contract class,
+        // make the constructor private.
+        private PersonalDetails() {}
+
+        /* Inner class that defines the table contents */
+        public static class Details implements BaseColumns {
+            public static final String TABLE_NAME = "personalDetails";
+            public static final String COLUMN_NAME_TITLE = "title";
+            public static final String COLUMN_NAME_FN = "first_name";
+            public static final String COLUMN_NAME_LN = "last_name";
+            public static final String COLUMN_NAME_ADD = "address";
+            public static final String COLUMN_NAME_TEL = "telephone";
+            public static final String COLUMN_NAME_GEN = "gender";
+            public static final String COLUMN_NAME_DOB = "dob";
+            public static final String COLUMN_NAME_JOB_APPLIED = "job_applied";
+            public static final String COLUMN_NAME_QUALIFICATIONS = "qualifications";
+            public static final String COLUMN_NAME_DESC = "description";
+        }
+        private static final String SQL_CREATE_ENTRIES =
+                "CREATE TABLE " + Details.TABLE_NAME + " (" +
+                        Details._ID + " INTEGER PRIMARY KEY," +
+                        Details.COLUMN_NAME_TITLE + " TEXT," +
+                        Details.COLUMN_NAME_FN + " TEXT," +
+                        Details.COLUMN_NAME_LN + " TEXT," +
+                        Details.COLUMN_NAME_ADD + " TEXT,"+
+                        Details.COLUMN_NAME_TEL + " TEXT,"+
+                        Details.COLUMN_NAME_GEN + " TEXT,"+
+                        Details.COLUMN_NAME_DOB + " TEXT,"+
+                        Details.COLUMN_NAME_JOB_APPLIED + " TEXT," +
+                        Details.COLUMN_NAME_QUALIFICATIONS + " TEXT," +
+                        Details.COLUMN_NAME_DESC + " TEXT)"  ;
+
+        private static final String SQL_DELETE_ENTRIES =
+                "DROP TABLE IF EXISTS " + Details.TABLE_NAME;
+
+
+        public static class PersonalDetailsDbHelper extends SQLiteOpenHelper {
+            // If you change the database schema, you must increment the database version.
+            public static final int DATABASE_VERSION = 3;
+            public static final String DATABASE_NAME = "personalDetails.db";
+
+            public PersonalDetailsDbHelper(Context context) {
+                super(context, DATABASE_NAME, null, DATABASE_VERSION);
+            }
+            public void onCreate(SQLiteDatabase db) {
+                db.execSQL(SQL_CREATE_ENTRIES);
+            }
+            public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+                // This database is only a cache for online data, so its upgrade policy is
+                // to simply to discard the data and start over
+                db.execSQL(SQL_DELETE_ENTRIES);
+                onCreate(db);
+            }
+            public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+                onUpgrade(db, oldVersion, newVersion);
+            }
+        }
 
     }
 
     private void submitForm() {
-//       PersonalDetails p = new PersonalDetails();
-//     PersonalDetails.Details d = new PersonalDetails.Details();
-//        PersonalDetails.PersonalDetailsDbHelper h = new PersonalDetails.PersonalDetailsDbHelper(getBaseContext());
-
-
-        outlinedFNTextField = (TextInputLayout) findViewById(R.id.outlinedFNTextField);
-        String FirstName = outlinedFNTextField.getEditText().getText().toString();
-        outlinedLNTextField = (TextInputLayout) findViewById(R.id.outlinedLNTextField);
-        String LastName = outlinedLNTextField.getEditText().getText().toString();
-        spinner = (Spinner) findViewById(R.id.spinner);
-        String Title = spinner.getSelectedItem().toString();
-        filledTeleTextField = (TextInputLayout) findViewById(R.id.filledTeleTextField);
-        String Telephone = filledTeleTextField.getEditText().getText().toString();
-        radioGender = (RadioGroup) findViewById(R.id.radioGender);
-        int selectedId = radioGender.getCheckedRadioButtonId();
-        radioButton = (RadioButton) findViewById(selectedId);
-        String Gender = radioButton.getText().toString();
-        //first validate the form then move ahead
-        //if this becomes true that means validation is successfull
-
+       PersonalDetails p = new PersonalDetails();
+        PersonalDetails.Details d = new PersonalDetails.Details();
+        PersonalDetails.PersonalDetailsDbHelper h = new PersonalDetails.PersonalDetailsDbHelper(getBaseContext());
 
         if (awesomeValidation.validate()) {
-            ArrayList<String> personalDetails = new ArrayList<String>();
-            personalDetails.add(Title);
-            personalDetails.add(FirstName);
-            personalDetails.add(LastName);
-            personalDetails.add(Telephone);
-            personalDetails.add(Gender);
+            outlinedFNTextField = (TextInputLayout) findViewById(R.id.outlinedFNTextField);
+            String FirstName = outlinedFNTextField.getEditText().getText().toString();
+            outlinedLNTextField = (TextInputLayout) findViewById(R.id.outlinedLNTextField);
+            String LastName = outlinedLNTextField.getEditText().getText().toString();
+            spinner = (Spinner) findViewById(R.id.spinner);
+            String Title = spinner.getSelectedItem().toString();
+            filledTeleTextField = (TextInputLayout) findViewById(R.id.filledTeleTextField);
+            String Telephone = filledTeleTextField.getEditText().getText().toString();
+            radioGender = (RadioGroup) findViewById(R.id.radioGender);
+            int selectedId = radioGender.getCheckedRadioButtonId();
+            radioButton = (RadioButton) findViewById(selectedId);
+            String Gender = radioButton.getText().toString();
+            spinner = (Spinner) findViewById(R.id.spinner2);
+            String jobapplied = spinner.getSelectedItem().toString();
+            filledQuaTextField = (TextInputLayout) findViewById(R.id.filledQuaTextField);
+            String qualifations = filledQuaTextField.getEditText().getText().toString();
+            filledDescTextField = (TextInputLayout) findViewById(R.id.filledDescTextField);
+            String desc =filledDescTextField.getEditText().getText().toString();
 
-            // SQLiteDatabase db = h.getWritableDatabase();
-//            ContentValues values = new ContentValues();
-//            values.put(d.COLUMN_NAME_TITLE, Title);
-//            values.put(d.COLUMN_NAME_FN, FirstName);
-//            values.put(d.COLUMN_NAME_LN, LastName);
-//            values.put(d.COLUMN_NAME_TEL, Telephone);
-//            values.put(d.COLUMN_NAME_GEN, Gender);
-//
-//            long newRowId = db.insert(d.TABLE_NAME, null, values);
-//
-//            Toast.makeText(getApplicationContext(),"Personal Details for:  "+ newRowId + " saved", Toast.LENGTH_LONG).show();
+            //first validate the form then move ahead
+            //if this becomes true that means validation is successfull
+
+
+            SQLiteDatabase db = h.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(d.COLUMN_NAME_TITLE, Title);
+            values.put(d.COLUMN_NAME_FN, FirstName);
+            values.put(d.COLUMN_NAME_LN, LastName);
+            values.put(d.COLUMN_NAME_TEL, Telephone);
+            values.put(d.COLUMN_NAME_GEN, Gender);
+            values.put(d.COLUMN_NAME_JOB_APPLIED, jobapplied);
+            values.put(d.COLUMN_NAME_QUALIFICATIONS, qualifations);
+            values.put(d.COLUMN_NAME_DESC, desc);
+
+            long newRowId = db.insert(d.TABLE_NAME, null, values);
+
+            Toast.makeText(getApplicationContext(),"Personal Details for:  "+ newRowId + " saved", Toast.LENGTH_LONG).show();
 //        String id = newRo;
 
 
-            Intent intent = new Intent(this, JobDetailsActivity.class);
-            intent.putExtra("personalDetailsArray", personalDetails);
+            Intent intent = new Intent(this, feedbackActivity.class);
             startActivity(intent);
         }
     }
