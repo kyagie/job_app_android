@@ -195,6 +195,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
 
     public void feedback(View view) {
         if (view == textButton) {
+
             submitForm();
         }
     }
