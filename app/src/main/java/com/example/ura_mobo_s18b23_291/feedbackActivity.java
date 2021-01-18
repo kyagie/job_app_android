@@ -2,7 +2,12 @@ package com.example.ura_mobo_s18b23_291;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.provider.BaseColumns;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -11,6 +16,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 public class feedbackActivity extends AppCompatActivity {
 
@@ -19,57 +26,40 @@ public class feedbackActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
 
-        String filename = "personalDetailsFile";
-        try {
-            FileInputStream fis = openFileInput(filename);
-            InputStreamReader inputStreamReader =
-                    new InputStreamReader(fis, StandardCharsets.UTF_8);
+        PersonalDetailsActivity.PersonalDetails.PersonalDetailsDbHelper h = new PersonalDetailsActivity.PersonalDetails.PersonalDetailsDbHelper(getBaseContext());
 
-            StringBuilder stringBuilder = new StringBuilder();
+        SQLiteDatabase db = h.getWritableDatabase();
+        PersonalDetailsActivity.PersonalDetails.Details d = new PersonalDetailsActivity.PersonalDetails.Details();
 
-            try (BufferedReader reader = new BufferedReader(inputStreamReader)) {
-                String line = reader.readLine();
-                while (line != null) {
-                    stringBuilder.append(line).append('\n');
-                    line = reader.readLine();
-                }
-            } catch (IOException e) {
-                // Error occurred when opening raw file for reading.
-            } finally {
-                String contents = stringBuilder.toString();
-                Toast.makeText(getApplicationContext(),"Personal Details for:  "+contents + " saved", Toast.LENGTH_LONG).show();
+        String[] projection = {
+                BaseColumns._ID,
+                d.COLUMN_NAME_TITLE,
+                d.COLUMN_NAME_FN
+        };
+        String selection = d.COLUMN_NAME_TITLE;
 
-            }
+        Cursor cursor = db.query(
+                d.TABLE_NAME,
+                projection,
+                selection,
+                null,
+                null,
+                null,
+                null
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        );
+        List itemIds = new ArrayList<>();
+        while(cursor.moveToNext()) {
+            long itemId = cursor.getLong(
+                    cursor.getColumnIndexOrThrow(d._ID));
+            itemIds.add(itemId);
         }
+        cursor.close();
 
-        String filename2 = "jobDetailsFile";
-        try {
-            FileInputStream fis = openFileInput(filename2);
-            InputStreamReader inputStreamReader =
-                    new InputStreamReader(fis, StandardCharsets.UTF_8);
 
-            StringBuilder stringBuilder = new StringBuilder();
+//        Toast.makeText(getApplicationContext(),"Here:  "+ projection[2] + " saved", Toast.LENGTH_LONG).show();
 
-            try (BufferedReader reader = new BufferedReader(inputStreamReader)) {
-                String line = reader.readLine();
-                while (line != null) {
-                    stringBuilder.append(line).append('\n');
-                    line = reader.readLine();
-                }
-            } catch (IOException e) {
-                // Error occurred when opening raw file for reading.
-            } finally {
-                String contents = stringBuilder.toString();
-                Toast.makeText(getApplicationContext(),"Job Details for:  "+contents + " saved", Toast.LENGTH_LONG).show();
 
-            }
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
 
     }
 }
