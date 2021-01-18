@@ -63,39 +63,39 @@ public class PersonalDetailsActivity extends AppCompatActivity {
 
     }
     private void submitForm() {
-        String filename = "personalDetailsFile";
-        outlinedFNTextField = (TextInputLayout) findViewById(R.id.outlinedFNTextField);
-        String FirstName = outlinedFNTextField.getEditText().getText().toString();
-        outlinedLNTextField = (TextInputLayout) findViewById(R.id.outlinedLNTextField);
-        String LastName = outlinedLNTextField.getEditText().getText().toString();
-        spinner = (Spinner) findViewById(R.id.spinner);
-        String Title = spinner.getSelectedItem().toString();
-        filledTeleTextField = (TextInputLayout) findViewById(R.id.filledTeleTextField);
-        String Telephone = filledTeleTextField.getEditText().getText().toString();
-        radioGender = (RadioGroup) findViewById(R.id.radioGender);
-        int selectedId = radioGender.getCheckedRadioButtonId();
-        radioButton = (RadioButton) findViewById(selectedId);
-        String Gender = radioButton.getText().toString();
-        //first validate the form then move ahead
-        //if this becomes true that means validation is successfull
-        FileOutputStream fos;
-        try {
-            fos = openFileOutput(filename, Context.MODE_PRIVATE);
-            //default mode is PRIVATE,
-            fos.write(Title.getBytes());
-            fos.write(FirstName.getBytes());
-            fos.write(LastName.getBytes());
-            fos.write(Telephone.getBytes());
-            fos.write(Gender.getBytes());
-            fos.close();
-            Toast.makeText(getApplicationContext(),"Personal Details for:  "+Title +" "+FirstName+ " " + LastName + " saved", Toast.LENGTH_LONG).show();
-        }catch (FileNotFoundException e){
-            e.printStackTrace();
-        }catch (IOException e){e.printStackTrace();}
+
         if (awesomeValidation.validate()) {
 //            Toast.makeText(this, "Validation Successfull", Toast.LENGTH_LONG).show();
             //process the data further
-
+            String filename = "personalDetailsFile";
+            outlinedFNTextField = (TextInputLayout) findViewById(R.id.outlinedFNTextField);
+            String FirstName = outlinedFNTextField.getEditText().getText().toString();
+            outlinedLNTextField = (TextInputLayout) findViewById(R.id.outlinedLNTextField);
+            String LastName = outlinedLNTextField.getEditText().getText().toString();
+            spinner = (Spinner) findViewById(R.id.spinner);
+            String Title = spinner.getSelectedItem().toString();
+            filledTeleTextField = (TextInputLayout) findViewById(R.id.filledTeleTextField);
+            String Telephone = filledTeleTextField.getEditText().getText().toString();
+            radioGender = (RadioGroup) findViewById(R.id.radioGender);
+            int selectedId = radioGender.getCheckedRadioButtonId();
+            radioButton = (RadioButton) findViewById(selectedId);
+            String Gender = radioButton.getText().toString();
+            //first validate the form then move ahead
+            //if this becomes true that means validation is successfull
+            FileOutputStream fos;
+            try {
+                fos = openFileOutput(filename, Context.MODE_PRIVATE);
+                //default mode is PRIVATE,
+                fos.write(Title.getBytes());
+                fos.write(FirstName.getBytes());
+                fos.write(LastName.getBytes());
+                fos.write(Telephone.getBytes());
+                fos.write(Gender.getBytes());
+                fos.close();
+                Toast.makeText(getApplicationContext(),"Personal Details for:  "+Title +" "+FirstName+ " " + LastName + " saved", Toast.LENGTH_LONG).show();
+            }catch (FileNotFoundException e){
+                e.printStackTrace();
+            }catch (IOException e){e.printStackTrace();}
             Intent intent = new Intent(this, JobDetailsActivity.class);
             startActivity(intent);
         }
