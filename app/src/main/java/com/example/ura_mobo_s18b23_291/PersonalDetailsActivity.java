@@ -1,6 +1,7 @@
 package com.example.ura_mobo_s18b23_291;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.io.File;
 
 public class PersonalDetailsActivity extends AppCompatActivity {
 
@@ -69,8 +72,13 @@ public class PersonalDetailsActivity extends AppCompatActivity {
         //first validate the form then move ahead
         //if this becomes true that means validation is successfull
         if (awesomeValidation.validate()) {
-//            Toast.makeText(this, "Validation Successfull", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Validation Successfull"+ isExternalStorageWritable(),  Toast.LENGTH_LONG).show();
             //process the data further
+
+            File[] externalStorageVolumes =
+                    ContextCompat.getExternalFilesDirs(getApplicationContext(), null);
+
+            File primaryExternalStorage = externalStorageVolumes[0];
 
 
 
