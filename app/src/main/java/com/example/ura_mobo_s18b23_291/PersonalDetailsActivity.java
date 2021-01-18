@@ -72,7 +72,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
         //first validate the form then move ahead
         //if this becomes true that means validation is successfull
         if (awesomeValidation.validate()) {
-            Toast.makeText(this, "Validation Successfull"+ isExternalStorageWritable(),  Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Is External Storage Writable: "+ isExternalStorageWritable(),  Toast.LENGTH_LONG).show();
             //process the data further
 
             File[] externalStorageVolumes =
